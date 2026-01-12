@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guessing Game</title>
+</head>
+<body style=" margin: auto; width: 	50%; text-align: center;">
+
+	<h1>Guess it to Win it</h1>
+		<form id="gameForm">	
+				<label class="element" for="guessBox">Enter your guess</label><br>	
+				<input class="element" type="number" id="guessBox"><br>
+
+				<button type="submit" class="submitElement" id="submit">Submit guess</button>
+
+				<!--<button type="button" class="submitElement" id="submit">Submit guess</button> unpro version-->
+
+				<!--refreshing the page because the button is submit form must change it to type button instead or other workaround-->
+		</form>		
+
+		<style>
+			.element{
+				margin: 10px;
+			}
+
+			.submitElement{
+				color: 	white;
+				border: 1px solid orange;
+				background-color: 	aqua;
+			}
+		</style>
+
+	<hr>
+
+	<h2 id="attempts" style="color: orange">Total Attempts</h2>
+	<h2 id="feedback"></h2>
+	<h1 id="haha"></h1>
+
+		<script>
+			let attempts = 0;
+			let num = Math.floor(Math.random()*100);
+			let guessed = false;
+
+			console.log(guessBox.value);
+			console.log(num);
+
+			document.getElementById("gameForm").addEventListener("submit", function(event){
+			event.preventDefault();
+
+				while(guessed == false){
+				attempts++;
+
+				if(document.getElementById("guessBox").value < num){
+					document.getElementById("attempts").innerHTML = "Total Attempts: " + attempts;
+					document.getElementById("feedback").innerHTML = "Higher";
+				}else if(document.getElementById("guessBox").value > num){
+					document.getElementById("attempts").innerHTML = "Total Attempts: " + attempts;
+					document.getElementById("feedback").innerHTML = "Lower";
+				}else{
+					document.getElementById("feedback").innerHTML = "Correct";
+					guessed = true;
+
+				let mahina = (attempts > 5) ? "Wala Kang Bitaw" : "Malakas";
+
+				document.getElementById("haha").innerHTML = mahina;
+
+				if(attempts < 2){
+					document.getElementById("haha").innerHTML = "Chamba!,  WAG MU NANG UULITIN YAN";
+				}
+
+				}
+
+				break;
+
+				}
+			});
+
+		</script>
+
+</body>
+</html>
+
+
+<!--Issues in Your Current Code
+Assignment vs Comparison
+
+In your else block, you wrote:
+
+js
+guessed == true;
+This is a comparison, not an assignment. It doesn’t change the value of guessed.
+✅ Fix:
+
+js
+guessed = true;
+Loop Usage
+
+You wrapped your logic in a while(guessed == false) loop, but then immediately break after one iteration. This makes the loop unnecessary.
+
+Since you’re already handling guesses one at a time via the submit event, you don’t need a while loop here. Just use simple if/else checks.
+
+Random Number Range
+
+Currently:
+
+js
+let num = Math.floor(Math.random()*100);
+This generates numbers from 0 to 99. If you want 1 to 100, use:
+
+js
+let num = Math.floor(Math.random() * 100) + 1;
+Type Conversion
+
+document.getElementById("guessBox").value returns a string.
+
+Comparing strings with numbers can cause unexpected results.
+✅ Fix:
+
+js
+let guess = parseInt(document.getElementById("guessBox").value);
+🛠️ Cleaned-Up Version
+Here’s a refined version of your script:
+
+html
+<script>
+  let attempts = 0;
+  let num = Math.floor(Math.random() * 100) + 1;
+  let guessed = false;
+
+  console.log("Secret number:", num);
+
+  document.getElementById("gameForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let guess = parseInt(document.getElementById("guessBox").value);
+    attempts++;
+
+    if (guess < num) {
+      document.getElementById("attempts").innerHTML = "Total Attempts: " + attempts;
+      document.getElementById("feedback").innerHTML = "Higher";
+    } else if (guess > num) {
+      document.getElementById("attempts").innerHTML = "Total Attempts: " + attempts;
+      document.getElementById("feedback").innerHTML = "Lower";
+    } else {
+      document.getElementById("feedback").innerHTML = "Correct!";
+      guessed = true;
+
+      let mahina = (attempts > 5) ? "Wala Kang Bitaw" : "Malakas";
+      document.getElementById("haha").innerHTML = mahina;
+
+      if (attempts < 2) {
+        document.getElementById("haha").innerHTML = "Chamba!, WAG MU NANG UULITIN YAN";
+      }
+    }
+  });
+</script>
+🚀 Next-Level Enhancements
+Add a Reset Button: Let players restart without refreshing the page.
+
+Limit Attempts: End the game after 10 tries with a “Game Over” message.
+
+Color Feedback: Use CSS to make “Higher” red, “Lower” blue, “Correct” green.
+
+Difficulty Levels: Easy (1–50), Medium (1–100), Hard (1–500).
+
+Would you like me to extend this into a multi-level triv-->

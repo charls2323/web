@@ -1,0 +1,30 @@
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	background: linear-gradient(to bottom, #4f008a, #b149bb);
+	min-height: 100vh;
+}
+
+h1{
+	text-align: center;
+	margin-top: 50px;
+	border-style: solid;
+	padding-top: 50px;
+	color: aliceblue;
+	text-transform: uppercase;
+	font-family: sans-serif;
+}
+
+.wrapper{
+	border-style: solid;
+	border-color: red;
+
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

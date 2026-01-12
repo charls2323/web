@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Front end</title>
+</head>
+<body>
+
+	<form>
+		<label for="username">Username</label><br>
+		<input type="text" id="username" placeholder="username"><br><br>
+
+
+		<label for="password">Password</label><br>
+		<input type="password" id="password" placeholder="password"><br><br>
+
+		<input type="submit" name="">
+
+	</form>
+
+	<hr>
+
+	<h2 id ="demo">hi</h2>
+	<h3 id ="today"></h3>
+	<h4 id ="display" >ss</h4>
+	<h4 id ="display2" >ss</h4>
+
+
+	<script type="text/javascript">
+		let text;
+		let x = 10;
+		let y= 20;
+
+		const z = 10**20;
+
+		console.log(z);
+
+		if(Math.random() < 0.5){
+			
+			 text = "<a href='https://w3schools.com'>Visit W3Schools</a>";
+
+		}else{
+
+			  text = "<a href='https://wwf.org'>Visit WWF</a>";
+		}
+
+		document.getElementById("demo").innerHTML = text;
+
+
+		let age= 10;
+		let ageGroup = (age < 18) ? "Minor" : "Adult";
+
+		console.log(ageGroup);
+
+		let member = true;
+
+		let discount = member ? 0.2 : 0.0;
+
+		console.log(discount);
+
+
+		let date = new Date().getDay()
+
+		switch(date){
+			case 0:
+				text = "Monday";
+			break;
+			case 1:
+				text = "Tuesday";
+			break;
+			case 2:
+				text = "Wednesday";
+			break;
+			case 3:
+				text = "Thursday";
+			break;
+			case 4:
+				text = "Friday";
+			break;
+			case 5:
+				text = "Saturday";
+			break;
+			case 6:
+				text = "Sunday";
+			break;
+		}
+
+	document.getElementById("today").innerHTML = "Today is" + text;
+
+	Boolean(10 > 9);
+
+	(10<9);
+
+	let firstName;
+	let lastName = "Manuel";
+
+	let result = firstName ?? lastName;
+
+	console.log(result);
+
+	document.getElementById("display").innerHTML = result;
+
+		 firstName = "Juan";
+		 lastName;
+
+		 result = firstName ?? lastName;
+
+	console.log(result);
+
+	document.getElementById("display2").innerHTML = result;
+
+	</script>
+</body>
+</html>
