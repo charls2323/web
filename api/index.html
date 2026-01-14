@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  
+    <label for="inData">Enter Country</label><br>
+    <input type="text" id="inData" name="inData"><br>
+    <button onclick="getResponse()">check</button>  
+  
+  
+  <hr>
+  <h2 id="outDisplay"></h2>
+   <h2 id="outDisplaya"></h2>
+  <script>
+  
+  async function getResponse(){
+     const link = await fetch("https://restcountries.com/v3.1/capital/manila"); // promise and response
+     console.log(link);
+     const varData =  await link.json();//parsed json
+     console.log(varData);
+    Check(varData[0].capital);
+  }
+
+  function display(){
+
+  }
+
+/*
+fetch → Promise → Response → parse (json/text/etc.) → usable data
+
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("API is down or returned an error");
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("API is up!");
+    console.log("Capital:", data[0].capital[0]); // restcountries returns arrays
+  })
+  .catch(error => {
+    console.error("API might be down:", error);
+  });
+*/
+  
+   function Check(Capital){
+   const country = document.getElementById("inData").value;
+    
+    const editCountry = country.toLowerCase();
+
+            document.getElementById("outDisplay").innerText = "City: " + Capital;
+            document.getElementById("outDisplaya").innerText = "giga";
+    }
+   
+  
+  
+  </script>
+</body>
+</html>

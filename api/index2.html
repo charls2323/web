@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  
+    <label for="inData">Enter Country</label><br>
+    <input type="text" id="inData" name="inData"><br>
+    <button onclick="Check()">check</button>  
+  
+  
+  <hr>
+  <h2 id="outDisplay"></h2>
+  <script>
+  
+  async function getResponse(Country){
+     const link = await fetch(`https://restcountries.com/v3.1/name/${Country}`); // promise and response
+     console.log(link);
+
+     if(link.ok)    // link.status === 200 same but you only wanted to allow 200 not other succesful codes
+     {
+     const varData =  await link.json();//parsed json
+     console.log(varData);
+     display(varData[0].capital);
+     }
+
+  }
+
+  function display(Capital){
+
+    const country = document.getElementById("inData").value;
+    const editCountry = country.toLowerCase();
+
+            document.getElementById("outDisplay").innerText = "City: " + Capital;
+  }
+  
+   function Check(){
+      const country = document.getElementById("inData").value;
+      console.log(country);
+
+      getResponse(country);
+    }
+   
+  
+  
+  </script>
+</body>
+</html>
+
+
+<!--
+
+  .then() comparison
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  
+  <label for="inData">Enter Country</label><br>
+  <input type="text" id="inData" name="inData"><br>
+  <button onclick="Check()">check</button>  
+  
+  <hr>
+  <h2 id="outDisplay"></h2>
+
+  <script>
+    function getResponse(Country) {
+      fetch(`https://restcountries.com/v3.1/name/${Country}`)
+        .then(link => {
+          // check if response is OK
+          if (!link.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return link.json(); // parse JSON
+        })
+        .then(varData => {
+          console.log(varData);
+          display(varData[0].capital[0]); // capital is an array
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+          document.getElementById("outDisplay").innerText = "Error: country not found";
+        });
+    }
+
+    function display(Capital) {
+      document.getElementById("outDisplay").innerText = "City: " + Capital;
+    }
+  
+    function Check() {
+      const country = document.getElementById("inData").value;
+      console.log(country);
+      getResponse(country);
+    }
+  </script>
+</body>
+</html>
+-->
